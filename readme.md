@@ -23,9 +23,10 @@
   - ALIYUN_FC_ASYNC_TASK_SERVICE_NAME: async_http 函数所在的服务名
   - ALIYUN_FC_ASYNC_TASK_FUNCTION_NAME: async_http 函数的名字，即为 async_http
   - ALIYUN_FC_ENDPOINT: 如 12345.cn-hangzhou.fc.aliyuncs.com，参考 https://help.aliyun.com/document_detail/52984.html
-  - FEISHU_CHATGPT_BASE_URL: feishu-chatgpt 里提供的链接，如 https://xxxxx.fcapp.run，注意，不要后面的 /webhook/xxx
+  - FEISHU_CHATGPT_BASE_URL: feishu-chatgpt 里提供的链接，如 https://xxxxx.fcapp.run 注意，不要后面的 /webhook/xxx
   - FEISHU_ENCRYPT_KEY: 飞书应用事件订阅里的 Encrypt Key
 
 ## 三、飞书配置更改
 1. 飞书事件订阅里的请求地址变更为二中的触发器管理里的地址
 2. 飞书机器人里的消息卡片请求网址变更为二中的触发器管理里的地址
+3. 建议将一中的执行超时时间和feishu-chatgpt中的执行超时时间设置大一点，默认为60s，可以设置为500s
