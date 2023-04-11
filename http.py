@@ -13,11 +13,7 @@ from flask import Flask, request, make_response, jsonify
 
 def async_proxy(event):
     FEISHU_CHATGPT_BASE_URL = os.environ.get('FEISHU_CHATGPT_BASE_URL', '')
-    ALIYUN_FC_ENDPOINT = os.environ.get(
-        'ALIYUN_FC_ENDPOINT', 'https://cn-shanghai.fc.aliyuncs.com')
-    # ALIYUN_FC_ENDPOINT = 'https://' + \
-    #     os.environ.get('FC_ACCOUNT_ID', '') + '.' + \
-    #     os.environ.get('FC_REGION', '') + '.fc.aliyuncs.com'
+    ALIYUN_FC_ENDPOINT = os.environ.get('ALIYUN_FC_ENDPOINT', '')
     ALIYUN_FC_ASYNC_TASK_SERVICE_NAME = os.environ.get(
         'ALIYUN_FC_ASYNC_TASK_SERVICE_NAME', '')
     ALIYUN_FC_ASYNC_TASK_FUNCTION_NAME = os.environ.get(
@@ -52,13 +48,7 @@ def async_proxy(event):
 app = Flask(__name__)
 
 
-@app.route("/feishu/hello")
-def feishu_hello():
-    FEISHU_CHATGPT_BASE_URL = os.environ.get('FEISHU_CHATGPT_BASE_URL', '')
-    return make_response(jsonify({"data": FEISHU_CHATGPT_BASE_URL}))
-
-
-@app.route("/feishu/webhook/event", methods=['GET', 'POST'])
+@app.route("/webhook/event", methods=['GET', 'POST'])
 def feishu_webhook_event():
     default_resp = make_response(jsonify({}))
     payload = request.get_json()
@@ -83,7 +73,7 @@ def feishu_webhook_event():
     return default_resp
 
 
-@app.route("/feishu/webhook/card", methods=['GET', 'POST'])
+@app.route("/webhook/card", methods=['GET', 'POST'])
 def feishu_webhook_card():
     default_resp = make_response(jsonify({}))
     payload: dict = request.get_json()
