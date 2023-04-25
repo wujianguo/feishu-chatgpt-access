@@ -1,3 +1,8 @@
+如[飞书回调限制](https://open.feishu.cn/document/ukTMukTMukTM/uYDNxYjL2QTM24iN0EjN/event-subscription-configure-/encrypt-key-encryption-configuration-case#9cd4c9b1)，"应用收到 HTTP POST 请求后，需要在 3 秒内以 HTTP 200 状态码响应该请求"。当文本过长时，chatgpt 生成的时间较长，会导致超时，飞书会把请求 cancel 掉。
+
+因此，飞书的回调接口实现应该尽量少做事，收到回调后马上返回，同时再异步调用真正的业务。可通过如下步骤解决。
+
+
 ## 一、创建异步事件函数
 1. 创建函数
 2. 使用内置运行时创建
